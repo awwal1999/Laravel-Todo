@@ -17,7 +17,8 @@
     </style>
 	<title>Todos</title>
 </head>
-<body class="mt20">
+<body>
+  @include('inc.navbar')
 	<div class="container">
 		@yield('content')
 	</div>
