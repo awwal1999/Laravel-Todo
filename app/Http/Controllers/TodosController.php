@@ -25,7 +25,7 @@ class TodosController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos.create');
     }
 
     /**
@@ -34,9 +34,13 @@ class TodosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attributes = $this->validateTodo();
+        
+        // dd($attributes);
+        Todo::create($attributes);
+        return redirect('/todo')->with('success', 'Todo Created');
     }
 
     /**
@@ -58,9 +62,9 @@ class TodosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Todo $todo)
     {
-        //
+        return view('todos.edit', compact('todo'));
     }
 
     /**
@@ -70,9 +74,11 @@ class TodosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Todo $todo)
     {
-        //
+        $attributes = $this->validateTodo();
+        $todo->update(request(['title','description','due']));
+        return redirect('/todo')->with('success', 'Todo Updated');
     }
 
     /**
@@ -81,8 +87,18 @@ class TodosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect('/todo')->with('success', 'Todo Deleted');
+    }
+
+    protected function validateTodo()
+    {
+        return $attributes =  request()->validate([
+            'title' => ['required', 'min:3', 'max:190'],
+            'description' => 'min:3',
+            'due' => ''
+        ]);
     }
 }

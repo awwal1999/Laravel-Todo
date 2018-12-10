@@ -12,9 +12,9 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      	<a class="navbar-item {{ Request::is('/') ? 'is-active' : '' }}" href="/">Home</a>
+      <a class="navbar-item {{ Request::is('/') ? 'is-active' : '' }}" href="/">Home</a>
 
-		<a class="navbar-item {{ Request::is('todo/create') ? 'is-active' : '' }}" href="todo/create">Create</a>
+		  <a class="navbar-item {{ Request::is('todo/create') ? 'is-active' : '' }}" href="/todo/create">Add Todo</a>
     </div>
 
     <div class="navbar-end">

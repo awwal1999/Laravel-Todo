@@ -8,6 +8,16 @@
     	.mt20 {
     		margin-top: 20px;
     	}
+    	.nmt36 {
+    		margin-top: -36px;
+    	}
+    	.nmt46 {
+    		margin-top: -46px;
+    	}
+
+    	.mb20 {
+    		margin-bottom: 20px;
+    	}
     	.footer {
 		    /*background-color: #fafafa;*/
 		    padding: 1.5rem 1.5rem 1.5rem;
@@ -20,6 +30,7 @@
 <body>
   @include('inc.navbar')
 	<div class="container">
+		@include('inc.messages')
 		@yield('content')
 	</div>
 </body>
